@@ -10,9 +10,7 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const quickLinks: { label: string; action: () => void }[] = [
     { label: 'Private Party and Table Bookings', action: () => onNavigate?.('book') },
-    { label: 'Terms of Use', action: () => window.open('https://www.orangerooms.co.uk/terms-conditions/', '_blank') },
-    { label: 'Privacy Policy', action: () => window.open('https://www.orangerooms.co.uk/privacy-policy/', '_blank') },
-    { label: 'Cookie Policy', action: () => window.open('https://www.orangerooms.co.uk/cookie-policy/', '_blank') },
+    { label: 'Cocktail Masterclass', action: () => onNavigate?.('cocktail-bar') },
     { label: 'Feedback', action: () => window.location.href = 'mailto:feedback@orangerooms.co.uk' },
     { label: 'Jobs', action: () => window.location.href = 'mailto:jobs@orangerooms.co.uk' },
     { label: 'Contact Us', action: () => window.location.href = 'mailto:info@orangerooms.co.uk' },
@@ -87,7 +85,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
               <text className="text-[7.5px] uppercase font-black fill-white/40 tracking-[0.1em]">
                 <textPath xlinkHref="#circlePath">
-                   • HIGH ON LIFE • EST. 2001 • ORANGE ROOMS • HIGH ON LIFE • EST. 2001 • ORANGE ROOMS
+                   • HIGH ON LIFE • EST. 2001 • ORANGE ROOMS • SOUTHAMPTON •
                 </textPath>
               </text>
             </svg>

@@ -52,11 +52,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onNavigate }) 
     `}>
       <div className="flex h-full w-full">
         
-        {/* Placeholder for sidebar consistency */}
-        <div className="w-20 lg:w-24 h-full" />
+        {/* Placeholder for sidebar consistency — hidden on mobile */}
+        <div className="hidden lg:block w-24 h-full" />
 
         {/* Main Menu Content */}
-        <div className="flex-1 flex flex-col justify-center px-8 sm:px-20 lg:px-28 overflow-y-auto py-24 scrollbar-hide">
+        <div className="flex-1 flex flex-col justify-center px-6 sm:px-12 lg:px-28 overflow-y-auto py-24 scrollbar-hide">
           <div className="flex flex-col space-y-2 md:space-y-4 lg:space-y-6">
             
             {/* MENUS + Horizontal Submenu */}

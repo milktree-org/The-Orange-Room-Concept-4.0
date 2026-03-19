@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 import LayoutShell from '@/components/LayoutShell';
 
 export const metadata: Metadata = {
   title: "The Orange Room | Southampton's Legendary Venue",
   description: "Southampton's legendary sanctuary for good vibes. Award-winning cocktail bar, bottomless brunches, private hire, and unforgettable events since 2001.",
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -24,6 +28,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Z9N56D6PE"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Z9N56D6PE');
+          `}
+        </Script>
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>
