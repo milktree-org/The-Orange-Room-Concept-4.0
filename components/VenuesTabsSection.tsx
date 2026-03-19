@@ -1,6 +1,7 @@
+'use client';
 
 import React, { useState } from 'react';
-import { View } from '../App.tsx';
+import { View } from '@/lib/types';
 
 interface Venue {
   id: string;

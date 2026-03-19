@@ -1,7 +1,8 @@
+'use client';
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { View } from '../App.tsx';
+import { View } from '@/lib/types';
 
 interface NavigationProps {
   onNavigate?: (view: View) => void;

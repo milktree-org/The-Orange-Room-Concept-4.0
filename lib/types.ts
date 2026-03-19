@@ -1,0 +1,18 @@
+export type View =
+  | 'home'
+  | 'tables'
+  | 'tiki'
+  | 'full-venue'
+  | 'half-venue'
+  | 'off-piste'
+  | 'mile-high'
+  | 'cocktail-bar'
+  | 'brunches'
+  | 'private-hire'
+  | 'corporate-hire'
+  | 'vip-bookings'
+  | 'neon-jungle'
+  | 'drinks-menu'
+  | 'food-menu'
+  | 'book'
+  | 'events';

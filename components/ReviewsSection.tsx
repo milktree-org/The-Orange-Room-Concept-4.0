@@ -1,3 +1,4 @@
+'use client';
 
 import React, { useRef, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -67,7 +68,7 @@ const ReviewsSection: React.FC = () => {
     };
   }, []);
 
-  const navigate = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
+  const navigate = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
     if (ref.current) {
       const boxWidth = window.innerWidth * 0.25; 
       const scrollAmount = direction === 'left' ? -boxWidth : boxWidth;

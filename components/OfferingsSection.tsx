@@ -1,6 +1,7 @@
+'use client';
 
 import React from 'react';
-import { View } from '../App.tsx';
+import { View } from '@/lib/types';
 
 interface OfferingsSectionProps {
   onNavigate?: (view: View) => void;

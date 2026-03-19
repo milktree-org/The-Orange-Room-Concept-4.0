@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+body {
+  background-color: #1a1919;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-script {
+  font-family: 'Mrs Saint Delafield', cursive;
+}
+
+.orange-highlight {
+  color: #F29100;
+}
+
+.bg-orange-primary {
+  background-color: #F29100;
+}
+
+.vertical-text {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F29100;
+}
+
+.grid-border-v, .block-border {
+  border-right: 2px solid rgba(255, 255, 255, 0.5);
+}
+.grid-border-h, .nav-border {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+.sidebar-border {
+  border-right: 2px solid rgba(255, 255, 255, 0.5);
+}
+.grid-border-l {
+  border-left: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 20s linear infinite;
+}
+
+@keyframes spin3d {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+.animate-spin-3d {
+  animation: spin3d 5s linear infinite;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

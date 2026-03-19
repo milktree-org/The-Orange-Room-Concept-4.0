@@ -1,7 +1,8 @@
+'use client';
 
 import React from 'react';
 import { Menu, X, CalendarDays } from 'lucide-react';
-import { View } from '../App.tsx';
+import { View } from '@/lib/types';
 
 interface MobileHeaderProps {
   toggleMenu: () => void;

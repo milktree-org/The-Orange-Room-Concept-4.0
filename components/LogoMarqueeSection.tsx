@@ -1,3 +1,4 @@
+'use client';
 
 import React from 'react';
 import { Mountain, Palmtree, Wind, Tent, Zap } from 'lucide-react';

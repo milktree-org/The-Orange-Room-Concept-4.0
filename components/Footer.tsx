@@ -1,6 +1,7 @@
+'use client';
 
 import React from 'react';
-import { View } from '../App.tsx';
+import { View } from '@/lib/types';
 
 interface FooterProps {
   onNavigate?: (view: View) => void;

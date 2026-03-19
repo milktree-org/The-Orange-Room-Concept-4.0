@@ -1,7 +1,8 @@
+'use client';
 
 import React from 'react';
 import { X, ChevronRight } from 'lucide-react';
-import { View } from '../App.tsx';
+import { View } from '@/lib/types';
 
 interface MobileMenuProps {
   isOpen: boolean;

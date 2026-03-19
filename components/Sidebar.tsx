@@ -1,3 +1,4 @@
+'use client';
 
 import React from 'react';
 import { Instagram, Facebook, Martini, Menu, X } from 'lucide-react';
