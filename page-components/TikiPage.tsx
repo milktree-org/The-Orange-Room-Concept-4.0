@@ -9,21 +9,21 @@ const TikiPage: React.FC = () => {
     {
       title: "Tiki Booths",
       capacity: "6 - 8 Guests",
-      image: "https://www.orangerooms.co.uk/wp-content/uploads/2024/01/tiki-booths.jpg",
+      image: "/photos/wp-assets/tiki-booths.jpg",
       description: "Bamboo-clad sanctuaries tucked away in our tropical oasis. Best served with our signature Mai Tais.",
       vibe: "EXOTIC / PRIVATE"
     },
     {
       title: "Tiki Shack",
       capacity: "Up to 15 Guests",
-      image: "https://www.orangerooms.co.uk/wp-content/uploads/2024/01/tiki-shack.jpg",
+      image: "/photos/wp-assets/tiki-shack.jpg",
       description: "Our legendary semi-private shack area. Perfect for larger tribes wanting their own slice of island life.",
       vibe: "EXCLUSIVE / TRIBAL"
     },
     {
       title: "Tiki Double Booths",
       capacity: "12 - 20 Guests",
-      image: "https://www.orangerooms.co.uk/wp-content/uploads/2024/01/tiki-double-booths.jpg",
+      image: "/photos/wp-assets/tiki-double-booths.jpg",
       description: "The ultimate island gathering spot. Two connected booths for grand tropical celebrations.",
       vibe: "GRAND / TROPICAL"
     }

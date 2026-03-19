@@ -56,7 +56,7 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
           className="flex items-center justify-center block-border px-6 transition-colors hover:bg-white/5 cursor-pointer group h-full box-border"
         >
           <img 
-            src="https://www.orangerooms.co.uk/wp-content/uploads/2023/10/orange-logo-1.png" 
+            src="/photos/wp-assets/orange-logo-1.png" 
             alt="Orange Rooms Logo" 
             className="h-14 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-500"
           />

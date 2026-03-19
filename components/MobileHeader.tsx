@@ -16,7 +16,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleMenu, isMenuOpen, onN
       {/* Brand Logo Area */}
       <div className="flex-1 px-4 flex items-center gap-3">
         <img 
-          src="https://www.orangerooms.co.uk/wp-content/uploads/2023/10/orange-logo-1.png" 
+          src="/photos/wp-assets/orange-logo-1.png" 
           alt="Orange Rooms" 
           className="h-10 w-auto"
         />

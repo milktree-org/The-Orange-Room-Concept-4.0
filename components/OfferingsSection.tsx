@@ -23,7 +23,7 @@ const OfferingsSection: React.FC<OfferingsSectionProps> = ({ onNavigate }) => {
       content: "Southampton's favorite weekend ritual. Enjoy two hours of unlimited drinks, incredible food, and high-energy vibes.",
       cta: "Join The Party",
       view: 'brunches' as View,
-      bgImage: "https://www.orangerooms.co.uk/wp-content/uploads/2025/07/smores3-1-1.png"
+      bgImage: "/photos/wp-assets/smores3-1-1.png"
     },
     {
       title: "Private Hire",
@@ -31,7 +31,7 @@ const OfferingsSection: React.FC<OfferingsSectionProps> = ({ onNavigate }) => {
       content: "From intimate birthday gatherings to grand wedding receptions, our versatile spaces offer the perfect backdrop.",
       cta: "Book Your Space",
       view: 'private-hire' as View,
-      bgImage: "https://www.orangerooms.co.uk/wp-content/uploads/2024/01/themed-brunches.jpg"
+      bgImage: "/photos/wp-assets/themed-brunches.jpg"
     },
     {
       title: "Corporate Hire",
@@ -39,7 +39,7 @@ const OfferingsSection: React.FC<OfferingsSectionProps> = ({ onNavigate }) => {
       content: "Ditch the boring boardroom. Host your next networking event, product launch, or team-building social.",
       cta: "Let's Talk Business",
       view: 'corporate-hire' as View,
-      bgImage: "https://www.orangerooms.co.uk/wp-content/uploads/2024/01/Order-Drinks-to-table-pic.jpg"
+      bgImage: "/photos/wp-assets/Order-Drinks-to-table-pic.jpg"
     },
     {
       title: "VIP Bookings",
@@ -47,7 +47,7 @@ const OfferingsSection: React.FC<OfferingsSectionProps> = ({ onNavigate }) => {
       content: "Secure an exclusive VIP booth with premium bottle service and a dedicated host. Party like a legend.",
       cta: "Go VIP",
       view: 'vip-bookings' as View,
-      bgImage: "https://www.orangerooms.co.uk/wp-content/uploads/2025/07/Large-Cassette-Booth-Hero-image-1.png"
+      bgImage: "/photos/wp-assets/Large-Cassette-Booth-Hero-image-1.png"
     },
     {
       title: "Neon Jungle",
@@ -55,7 +55,7 @@ const OfferingsSection: React.FC<OfferingsSectionProps> = ({ onNavigate }) => {
       content: "Step into our immersive tropical oasis. Think neon lights, exotic greenery, and frozen cocktails.",
       cta: "Step Inside",
       view: 'neon-jungle' as View,
-      bgImage: "https://www.orangerooms.co.uk/wp-content/uploads/2023/12/Garden-Tables-1.png"
+      bgImage: "/photos/wp-assets/Garden-Tables-1.png"
     }
   ];
 

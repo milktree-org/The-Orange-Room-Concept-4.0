@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
       { source: "/recruitment/:path*", destination: "/", permanent: true },
       { source: "/legal/:path*", destination: "/", permanent: true },
       { source: "/event-calendar/:path*", destination: "/events", permanent: true },
-      { source: "/wp-content/:path*", destination: "/", permanent: true },
+      // wp-content redirect removed — assets served from public/photos/wp-assets/
       { source: "/wp-admin/:path*", destination: "/", permanent: true },
       { source: "/wp-includes/:path*", destination: "/", permanent: true },
       { source: "/wp-json/:path*", destination: "/", permanent: true },

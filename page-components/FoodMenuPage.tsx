@@ -155,7 +155,7 @@ const FoodMenuPage: React.FC = () => {
                     onClick={() => setIsLightboxOpen(true)}
                     onError={(e) => {
                        // Fallback placeholder with colorful style
-                       e.currentTarget.src = "https://www.orangerooms.co.uk/wp-content/uploads/2023/10/Summer-At-Orange-Menu-Screenshot-Placeholder.jpg";
+                       e.currentTarget.src = "/photos/wp-assets/orange-logo-1.png";
                     }}
                   />
                   <div className="absolute bottom-10 right-10 flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -209,7 +209,7 @@ const FoodMenuPage: React.FC = () => {
                 alt="Full Menu View" 
                 className="w-full h-full object-contain shadow-2xl"
                 onError={(e) => {
-                  e.currentTarget.src = "https://www.orangerooms.co.uk/wp-content/uploads/2023/10/Summer-At-Orange-Menu-Screenshot-Placeholder.jpg";
+                  e.currentTarget.src = "/photos/wp-assets/orange-logo-1.png";
                 }}
               />
            </div>

@@ -72,7 +72,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           playsInline
           className="w-full h-full object-cover object-center grayscale-[0.1] contrast-[1.1] transition-transform duration-[10000ms] ease-out scale-105 group-hover:scale-110"
         >
-          <source src="https://www.orangerooms.co.uk/wp-content/uploads/2024/02/x2mate.com-Orange-Rooms-Cocktails-LG-1080p.mp4" type="video/mp4" />
+          <source src="/photos/wp-assets/x2mate.com-Orange-Rooms-Cocktails-LG-1080p.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#1a1919]/50 via-transparent to-transparent pointer-events-none"></div>
