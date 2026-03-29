@@ -39,6 +39,7 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
     { label: 'PRIVATE HIRE', href: '/private-hire', view: 'private-hire' as const },
     { label: 'CORPORATE HIRE', href: '/corporate-hire', view: 'corporate-hire' as const },
     { label: 'VIP BOOKINGS', href: '/vip-bookings', view: 'vip-bookings' as const },
+    { label: 'GIFT VOUCHERS', href: 'https://orangerooms.giftpro.co.uk/', isExternal: true },
     { label: 'BOOK', href: '/book', view: 'book' as const, isSpecial: true },
   ];
 
@@ -50,7 +51,7 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
 
   return (
     <nav className="fixed top-0 left-20 lg:left-24 right-0 z-50 h-20 lg:h-24 nav-border bg-[#1a1919]/95 backdrop-blur-md box-border hidden lg:block">
-      <div className="grid grid-cols-[240px_repeat(6,1fr)] h-full">
+      <div className="grid grid-cols-[240px_repeat(7,1fr)] h-full">
         <div 
           onClick={() => handleClick('home')}
           className="flex items-center justify-center block-border px-6 transition-colors hover:bg-white/5 cursor-pointer group h-full box-border"
@@ -68,12 +69,13 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
           return (
             <div 
               key={item.label}
-              className={`relative group h-full ${idx < 5 ? 'block-border' : ''}`}
+              className={`relative group h-full ${idx < 6 ? 'block-border' : ''}`}
               onMouseEnter={() => item.hasSubmenu && setActiveDropdown(item.label)}
               onMouseLeave={() => item.hasSubmenu && setActiveDropdown(null)}
             >
-              <a 
-                href={item.href} 
+              <a
+                href={item.href}
+                {...(item.isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 onClick={(e) => {
                   if (item.view) {
                     e.preventDefault();

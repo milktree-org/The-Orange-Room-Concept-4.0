@@ -123,8 +123,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onNavigate }) 
               </div>
             </div>
 
-            {/* BOOK */}
+            {/* GIFT VOUCHERS */}
             <div className={`transition-all duration-700 delay-375 ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+              <a href="https://orangerooms.giftpro.co.uk/" target="_blank" rel="noopener noreferrer" className="text-[52px] sm:text-[68px] md:text-[80px] lg:text-[100px] font-sans font-black text-[#f5f5f1] hover:text-[#F29100] leading-tight tracking-tight transition-all">
+                Gift Vouchers
+              </a>
+            </div>
+
+            {/* BOOK */}
+            <div className={`transition-all duration-700 delay-450 ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
               <a href="/book" onClick={(e) => { e.preventDefault(); handleLinkClick('book'); }} className="text-[52px] sm:text-[68px] md:text-[80px] lg:text-[100px] font-sans font-black text-[#F29100] hover:text-white leading-tight tracking-tight transition-all">
                 Reserve a Table
               </a>
@@ -135,7 +142,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onNavigate }) 
           {/* Minimalist Footer Info */}
           <div className={`
             mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-6
-            transition-all duration-1000 delay-500
+            transition-all duration-1000 delay-550
             ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
           `}>
             <div className="flex gap-12">

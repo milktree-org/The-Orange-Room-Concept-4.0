@@ -8,9 +8,10 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const quickLinks: { label: string; action: () => void }[] = [
+  const quickLinks: { label: string; action: () => void; external?: boolean }[] = [
     { label: 'Private Party and Table Bookings', action: () => onNavigate?.('book') },
     { label: 'Cocktail Masterclass', action: () => onNavigate?.('cocktail-bar') },
+    { label: 'Gift Vouchers', action: () => window.open('https://orangerooms.giftpro.co.uk/', '_blank', 'noopener,noreferrer') },
     { label: 'Feedback', action: () => window.location.href = 'mailto:feedback@orangerooms.co.uk' },
     { label: 'Jobs', action: () => window.location.href = 'mailto:jobs@orangerooms.co.uk' },
     { label: 'Contact Us', action: () => window.location.href = 'mailto:info@orangerooms.co.uk' },
