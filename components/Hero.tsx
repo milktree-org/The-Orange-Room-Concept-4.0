@@ -14,23 +14,18 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       {/* LEFT BOX: Content Area */}
       <div className="p-6 sm:p-10 md:p-12 lg:p-20 flex flex-col justify-center relative border-b-2 lg:border-b-0 lg:border-r-2 border-white/50 h-full overflow-hidden">
         
-        <div className="max-w-[550px] relative z-20">
+        <div className="max-w-[600px] relative z-20">
           {/* TOP LABEL */}
           <span className="text-[10px] md:text-[12px] lg:text-[13px] uppercase tracking-[0.7em] font-black text-[#F29100] mb-6 block ml-1">
             ESTABLISHED 2001
           </span>
 
-          {/* BRAND LOGO - TWO TONE */}
-          <h1 className="text-[48px] sm:text-[64px] md:text-[80px] lg:text-[110px] font-black leading-[0.85] tracking-tighter uppercase mb-8 lg:mb-10 select-none">
-            <span className="text-[#F29100]">Orange</span> <br className="hidden sm:block" /> 
-            <span className="text-white">Rooms</span>
+          {/* HEADLINE */}
+          <h1 className="text-[32px] sm:text-[42px] md:text-[51px] lg:text-[67px] font-black leading-[0.95] tracking-tight text-white mb-8 lg:mb-10">
+            Southampton's <span className="text-[#F29100]">Legendary</span> Sanctuary For <span className="text-[#F29100]">Good Vibes</span>.
           </h1>
-          
+
           <div className="space-y-6 md:space-y-8">
-            <h2 className="text-[24px] sm:text-[28px] md:text-[34px] lg:text-[42px] font-medium tracking-tight text-white/95 leading-tight">
-              Southampton's legendary sanctuary for <span className="text-[#F29100] font-semibold">Good Vibes</span>.
-            </h2>
-            
             <p className="text-[14px] lg:text-[16px] text-white/70 leading-[1.6] lg:leading-[1.8] font-light max-w-[480px]">
               Celebrating 25 incredible years! Step into our retro-inspired wonderland from tropical Tiki escapes to alpine beats in Off Piste.
             </p>
@@ -54,11 +49,12 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
 
         {/* Floating Cocktail Glass Graphic */}
-        <div className="absolute right-0 bottom-0 z-10 pointer-events-none transform translate-x-[20%] lg:translate-x-[30%] -rotate-[15deg] lg:-rotate-[20deg] origin-bottom opacity-40 md:opacity-60 lg:opacity-100 brightness-125 contrast-110">
-          <img 
-            src="https://cdn.prod.website-files.com/625dca65ef10831541cfb895/62d53d99b24bb232731c4c92_gemma-cocktail.svg" 
-            alt="Cocktail Illustration" 
-            className="w-[160px] sm:w-[200px] md:w-[224px] lg:w-[336px] h-auto drop-shadow-[0_0_20px_rgba(242,145,0,0.4)]"
+        <div className="hidden lg:block absolute right-0 bottom-0 z-0 pointer-events-none transform translate-x-[45%] translate-y-[10%] -rotate-[20deg] origin-bottom opacity-30 brightness-125 contrast-110">
+          <img
+            src="https://cdn.prod.website-files.com/625dca65ef10831541cfb895/62d53d99b24bb232731c4c92_gemma-cocktail.svg"
+            alt=""
+            aria-hidden="true"
+            className="w-[280px] xl:w-[340px] h-auto drop-shadow-[0_0_20px_rgba(242,145,0,0.4)]"
           />
         </div>
       </div>

@@ -6,6 +6,41 @@ Each session entry documents: goal, changes made, verification evidence, outstan
 
 ---
 
+## 2026-04-24 — Hero restructure per client feedback
+
+**Goal:** Pull latest from GitHub, run locally, address client feedback on the homepage hero.
+
+### Environment sync
+- Pulled `5edab20..c7ece47` from `origin/main` (4 commits behind; included the Vite→Next.js migration plus analytics/SEO hardening).
+- Removed stale `node_modules` + `package-lock.json` and reinstalled against the new Next.js 16.2.4 / React 19.2.4 / Tailwind 4.2 stack.
+- Started `npm run dev` (Turbopack) — `http://localhost:3000` returned 200 OK, clean compile.
+
+### Client feedback (Unnati, screenshot)
+1. Remove the large "ORANGE ROOMS" wordmark — the header logo already covers branding, the wordmark was pushing the tagline down and duplicating the brand.
+2. Elevate "Southampton's legendary sanctuary…" — this is the positioning line and deserves the hero slot.
+3. The floating cocktail illustration was visually crossing over "Good Vibes" text, making the tagline hard to read.
+
+### Changes (`components/Hero.tsx`)
+- Deleted the two-tone `Orange / Rooms` `<h1>` block.
+- Promoted the tagline to the hero `<h1>`: *"Southampton's Legendary Sanctuary For Good Vibes."* — Title Case, with "Legendary" and "Good Vibes" in brand orange for accent.
+- Reduced headline sizing by 20% after first pass felt too heavy (final: `32 / 42 / 51 / 67 px`).
+- Cocktail illustration now:
+  - Hidden below `lg` breakpoint (it was the main culprit on tablet/mobile per the screenshot).
+  - Translated further off-screen (`translate-x-[45%]`).
+  - Dropped behind content (`z-0`, content is `z-20`).
+  - Opacity reduced to 30% so it reads as ambient decoration, not a foreground element.
+  - `alt=""` + `aria-hidden="true"` since it's decorative.
+
+### Verification
+- ✅ Turbopack hot-reload compiled cleanly after each edit (no TS or build errors in the dev log).
+- ✅ Localhost renders the new headline without overlap at tested breakpoints.
+
+### Outstanding
+- Visual QA on mobile at actual device widths (dev verification was localhost only).
+- Confirm with client that the new Title Case + color emphasis read as intended on production.
+
+---
+
 ## 2026-04-15 — Analytics hardening + SEO/GEO foundation
 
 **Goal:** Audit the existing Google Analytics install, fix any leaks, then build the full SEO + GEO foundation (Search Console ready, AI-search ready).
@@ -91,3 +126,135 @@ Each session entry documents: goal, changes made, verification evidence, outstan
 - Explicit `geo` coordinates in LocalBusiness (currently relies on Google geocoding the address)
 
 ---
+
+## 2026-03-29 — Gift Vouchers link
+
+**Goal:** Surface the Gift Vouchers CTA across primary navigation surfaces.
+
+- Added a Gift Vouchers link to the desktop nav, mobile menu, and footer.
+- No routing / page work — link points to the existing vouchers destination.
+
+---
+
+## 2026-03-19 — Vite → Next.js migration + navigation/mobile polish
+
+Multi-commit session; the big architectural turning point for the project.
+
+### Vite SPA → Next.js App Router migration
+**Why:** The site was a single-route Vite SPA — every page rendered client-side, no per-page metadata, nothing for search engines to index. Moving to Next.js App Router was a pre-requisite for the SEO work in the 2026-04-15 session.
+
+- Deleted `App.tsx`, `index.html`, `index.tsx`, `vite.config.ts` (the Vite entrypoints).
+- Created `app/layout.tsx` as the new root, `app/page.tsx` + one `app/<route>/page.tsx` per public route (17 routes total).
+- Renamed `pages/` → `page-components/` to avoid collision with Next.js routing conventions. Imports updated site-wide.
+- Added `next.config.ts`, `postcss.config.mjs`, new `tsconfig.json` aligned to Next.js defaults.
+- Added `components/LayoutShell.tsx` to host the persistent chrome (header/sidebar/footer) under the App Router.
+
+### 301 redirects for legacy WordPress URLs
+- Configured `next.config.ts` `redirects()` to permanently redirect old WP paths to the new routes — preserves any existing inbound SEO equity.
+
+### Menu structure rename
+- `Venues` → `Venue`, `Lineup` → `Events`.
+- Moved Neon Jungle under the new Events grouping per the client's IA preference.
+
+### Mobile + polish fixes
+- Fixed the mobile header logo smushing at very small viewport widths.
+- Fixed footer link targets, adjusted the site-wide loading spinner, tightened mobile menu transitions.
+- Added a custom 404 page (`app/not-found.tsx`) styled to match the brand instead of the default Next.js 404.
+- Added favicon (`public/favicon.svg`).
+- Initial Google Analytics tag install (measurement ID had a typo — fixed later on 2026-04-15).
+
+### Image asset work
+- Replaced all external `cdn.prod.website-files.com` (Webflow) and `.wp-assets` URLs with local images under `public/photos/`.
+- Replaced the homepage hero video with a static image (performance + mobile battery).
+- Added missing image assets flagged by broken references.
+
+### Link cleanup
+- Replaced every placeholder `href="#"` across components with real URL paths.
+
+---
+
+## 2026-03-11 — Events page
+
+**Goal:** Give the site a real Events surface and hook up ticketing.
+
+- Built the Events page with a FIXR ticket widget embed.
+- Added Events links into the primary navigation paths.
+- Hooked the page into the Vite-era routing (this was pre-Next.js migration).
+
+---
+
+## 2026-03-10 — DMN booking widget
+
+**Goal:** Bring the DMN table booking widget into the main Book flow.
+
+- Integrated the DMN booking widget into `components/BookingSection.tsx`.
+- Applied a dark theme + full-width layout so the widget matched the site aesthetic instead of the default white branded look.
+
+---
+
+## 2026-02-25 — Figurati pizza menu (copy pass)
+
+- Replaced the placeholder food menu content with the real Figurati pizza collab menu supplied by the client.
+
+---
+
+## 2026-02-23 — Content + content widgets batch
+
+- Updated site-wide content copy for the Figurati pizza collab launch.
+- Fixed carousel glitches reported after the 2026-02-21 image swap.
+- Wired up the initial booking widget scaffolding (precursor to the DMN work on 2026-03-10).
+- Migrated additional images to local assets.
+
+---
+
+## 2026-02-21 — Local image assets
+
+- First pass of migrating images from remote URLs to local files under `public/photos/`.
+- Applied across the homepage and individual venue pages.
+
+---
+
+## 2026-02-12 — Booking page, food menu, layout/mobile fixes
+
+Largest pre-migration session by commit count.
+
+- Added a dedicated Booking page.
+- Implemented the interactive food menu display.
+- Resolved layout clipping issues across several sections.
+- Fixed footer alignment at edge breakpoints.
+- Improved the mobile menu behaviour (open/close, focus trap).
+- Added several new page views and navigation entries to the client-side router.
+
+---
+
+## 2026-02-10 — Hero + menu styling refinements
+
+- Typography, spacing, and color pass on the hero section.
+- Menu styling polish — prep for the food menu page implementation two days later.
+
+---
+
+## 2026-02-05 — Multi-view routing
+
+- Added client-side routing for individual venue pages (Tiki, Off Piste, Neon Jungle, Mile High, Cocktail Bar).
+- Established the multi-view navigation pattern the site would use until the Next.js migration.
+
+---
+
+## 2026-02-04 — Initial build (Vite SPA)
+
+First working session; set up the Vite-based scaffolding.
+
+- Implemented the initial hero section for The Orange Room concept.
+- Added the news section (later removed 2026-02-04).
+- Implemented mobile navigation and the sidebar toggle behaviour.
+- Removed inline external CSS in favour of the build pipeline.
+- Iterated on hero and navigation content/copy.
+- Implemented the Cocktail Bar page as the first dedicated venue page.
+- Pruned the unused `NewsSection` component.
+
+---
+
+## 2026-02-04 — Initial commit
+
+- Repository scaffolded. Vite + React + TypeScript + Tailwind baseline.
