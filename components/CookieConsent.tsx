@@ -9,17 +9,20 @@ type ConsentChoice = 'accepted' | 'rejected';
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
 /**
  * GDPR/PECR cookie consent banner.
  *
- * Works in tandem with <GoogleAnalytics />, which sets Consent Mode v2 defaults
- * to 'denied'. This banner calls gtag('consent', 'update', ...) on user choice
- * and persists the decision in localStorage so it's not asked again.
+ * Works in tandem with:
+ * - <GoogleAnalytics /> — Consent Mode v2 defaults set to 'denied'.
+ *   Banner calls gtag('consent', 'update', ...) on choice.
+ * - <MetaPixel /> — fbq('consent', 'revoke') set by default.
+ *   Banner calls fbq('consent', 'grant'/'revoke') on choice.
  *
- * Only analytics_storage is surfaced — no ads, no remarketing on this site.
+ * The decision is persisted in localStorage so the banner doesn't reappear.
  */
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -37,12 +40,15 @@ export default function CookieConsent() {
       return;
     }
 
-    // Re-apply a previously-granted consent on each visit so GA is actually enabled.
-    // (Default is 'denied' until an update call flips it.)
+    // Re-apply a previously-granted consent on each visit so GA + Pixel are
+    // actually enabled. (Both default to 'denied' until an update call flips it.)
     if (stored === 'accepted') {
       window.gtag?.('consent', 'update', {
         analytics_storage: 'granted',
       });
+      window.fbq?.('consent', 'grant');
+      // Re-fire PageView now that the pixel is allowed to send.
+      window.fbq?.('track', 'PageView');
     }
   }, []);
 
@@ -59,15 +65,20 @@ export default function CookieConsent() {
     window.gtag?.('consent', 'update', {
       analytics_storage: 'granted',
     });
+    window.fbq?.('consent', 'grant');
+    // Pixel was init'd with consent revoked, so the first PageView was queued
+    // but never sent. Fire it now that consent is granted.
+    window.fbq?.('track', 'PageView');
     setVisible(false);
   };
 
   const handleReject = () => {
     persist('rejected');
-    // Default is already 'denied', but be explicit so it's auditable.
+    // Defaults are already 'denied'/'revoke', but be explicit so it's auditable.
     window.gtag?.('consent', 'update', {
       analytics_storage: 'denied',
     });
+    window.fbq?.('consent', 'revoke');
     setVisible(false);
   };
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import LayoutShell from '@/components/LayoutShell';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import MetaPixel from '@/components/MetaPixel';
 import CookieConsent from '@/components/CookieConsent';
 import { SITE } from '@/lib/seo';
 import {
@@ -114,6 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <GoogleAnalytics />
+        <MetaPixel />
         <script
           type="application/ld+json"
           // JSON is generated at build time from typed constants — not user input.

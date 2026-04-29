@@ -6,6 +6,45 @@ Each session entry documents: goal, changes made, verification evidence, outstan
 
 ---
 
+## 2026-04-29 — Meta Pixel install for ad tracking
+
+**Goal:** Install Meta Pixel `332478784478463` so the client can run Facebook/Instagram ad campaigns. Client (Peter Toland) flagged this as a blocker — campaigns can't launch without the pixel firing.
+
+### Implementation
+
+Followed the same pattern as the existing Google Analytics setup: production-only, env-var-driven, consent-gated.
+
+**New file:**
+- `components/MetaPixel.tsx` — Meta Pixel base script wrapped for Next.js App Router.
+  - Returns `null` outside production (`NODE_ENV !== 'production'`) so dev traffic never reaches the Pixel.
+  - Reads pixel ID from `NEXT_PUBLIC_META_PIXEL_ID` env var.
+  - Calls `fbq('consent', 'revoke')` BEFORE `fbq('init', ...)` so the pixel queues hits but doesn't transmit until consent is granted (UK PECR/GDPR compliant).
+  - Renders a `<noscript>` 1×1 tracking image fallback.
+  - SPA `PageView` tracking via a `MetaPixelRouteTracker` client component that listens to `usePathname` + `useSearchParams` (wrapped in `<Suspense>` because `useSearchParams` suspends during prerender).
+
+**Modified files:**
+- `components/CookieConsent.tsx` — Accept now also fires `fbq('consent', 'grant')` + `fbq('track', 'PageView')` (since the initial PageView was queued under revoked consent). Reject fires `fbq('consent', 'revoke')`. Visit-on-return logic re-applies grant for both gtag and fbq when localStorage shows previous accept.
+- `app/layout.tsx` — added `<MetaPixel />` next to `<GoogleAnalytics />` in `<body>`.
+- `.env.example` — documented `NEXT_PUBLIC_META_PIXEL_ID` with same compliance notes.
+
+### Vercel env config
+- ✅ `NEXT_PUBLIC_META_PIXEL_ID=332478784478463` set on Production
+- ⚠️ Preview environment NOT set — Vercel CLI v50/v52 has a `--yes` regression that prevents non-interactive add for Preview. To set Preview manually: project settings → Environment Variables → add `NEXT_PUBLIC_META_PIXEL_ID` for Preview. Not blocking for ads (Production is what runs on `orangerooms.co.uk`).
+
+### Verification
+- ✅ `npm run build` — type check clean, all 23 routes prerender static
+- ✅ Window type declaration conflict between `MetaPixel.tsx` and `CookieConsent.tsx` resolved (single declaration in CookieConsent; TS merges globals)
+- ✅ Production deploy via `vercel deploy --prod` (Git auto-deploy still broken — see 2026-04-24 entry)
+
+### Outstanding
+- Set `NEXT_PUBLIC_META_PIXEL_ID` on Preview env in Vercel dashboard (CLI bug workaround)
+- Verify pixel fires on `orangerooms.co.uk` using [Meta Pixel Helper](https://chromewebstore.google.com/detail/meta-pixel-helper) browser extension after deploy lands
+- Confirm with Meta Events Manager that PageView events arrive
+- **FIXR question from same client email:** Peter asked whether Events page and Bottomless Brunches should be merged into one (since FIXR API serves both). Needs a product decision before any code work — not actioned in this session.
+- Reconnect Vercel Git integration to `milktree-org` so `git push` resumes auto-deploys (carried over from 2026-04-24)
+
+---
+
 ## 2026-04-24 — Hero restructure per client feedback
 
 **Goal:** Pull latest from GitHub, run locally, address client feedback on the homepage hero.
