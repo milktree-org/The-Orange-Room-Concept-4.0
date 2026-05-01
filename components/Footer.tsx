@@ -118,7 +118,24 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="flex flex-col md:flex-row items-center justify-between px-6 md:px-12 lg:px-16 border-t-2 border-white/50 py-6 gap-3 md:gap-4">
         <span className="text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.4em] font-black text-white/20 text-center md:text-left">SOUTHAMPTON'S LEGENDARY VENUE</span>
         <span className="text-[8px] md:text-[10px] text-white/30 uppercase font-black tracking-[0.15em] md:tracking-[0.2em] text-center md:text-right flex-shrink-0">
-          WEBSITE BY <a href="https://milktreeagency.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#F29100] transition-colors">MILKTREE AGENCY</a>
+          WEBSITE BY{' '}
+          <a
+            href="https://rifly.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              // Custom GA4 event so we can find these clicks in Analytics later.
+              // Look for event name `rifly_footer_click` in GA4 → Reports → Engagement → Events.
+              window.gtag?.('event', 'rifly_footer_click', {
+                outbound_url: 'https://rifly.ai',
+                link_text: 'Rifly.ai',
+                source: 'footer',
+              });
+            }}
+            className="text-white hover:text-[#F29100] transition-colors"
+          >
+            RIFLY.AI
+          </a>
         </span>
       </div>
     </footer>

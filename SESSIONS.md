@@ -6,6 +6,33 @@ Each session entry documents: goal, changes made, verification evidence, outstan
 
 ---
 
+## 2026-04-30 — Footer credit: Milktree Agency → Rifly.ai with GA tracking
+
+**Goal:** Swap the "Website by Milktree Agency" credit in the footer to point to Rifly.ai, keep the new-tab behavior, and instrument the click so it can be tracked in Google Analytics.
+
+### Changes (`components/Footer.tsx`)
+- Updated the bottom credit link from `MILKTREE AGENCY` → `RIFLY.AI`.
+- Changed `href` from `https://milktreeagency.com/` → `https://rifly.ai`.
+- Kept `target="_blank"` + `rel="noopener noreferrer"` so the link opens in a new tab safely.
+- Added an `onClick` handler that fires a GA4 custom event:
+  - Event name: `rifly_footer_click`
+  - Parameters: `outbound_url`, `link_text`, `source: 'footer'`
+- Inline comment explains where to find the events in GA4 (Reports → Engagement → Events).
+
+### How to find the clicks in GA4
+1. GA4 → Reports → Engagement → Events
+2. Look for event name `rifly_footer_click`
+3. Click into it to see the parameters per event (outbound_url, link_text, source)
+4. To create a custom report or audience, mark the event as a Conversion in Admin → Events.
+
+(Note: respects existing Consent Mode — no event fires if user rejected analytics on the cookie banner, since `gtag` is gated by Consent Mode v2 defaults.)
+
+### Verification
+- ✅ `npm run build` clean, all 23 routes prerender static.
+- ✅ Production deploy via `vercel deploy --prod`.
+
+---
+
 ## 2026-04-30 — Spelling sweep: Figarati → Figurati
 
 **Goal:** Client (re-)flagged that "Figarati" appears on the site instead of the correct partner name "Figurati". A previous pass on 2026-02-25 fixed it across most surfaces, but three stragglers had crept back / been missed.
