@@ -105,7 +105,7 @@ const BrunchesPage: React.FC = () => {
             {[
               "Unlimited drinks for exactly 120 minutes.",
               "One drink at a time per person.",
-              "Upgrade to include pizza from our Figarati kitchen.",
+              "Upgrade to include pizza from our Figurati kitchen.",
               "Last drink orders are taken 15 mins before time ends.",
               "If you arrive late to your session, we cannot guarantee an extension of your booking time.",
               "Management reserve the right to refuse service.",

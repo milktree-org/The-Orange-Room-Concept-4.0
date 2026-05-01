@@ -64,7 +64,7 @@ const FoodMenuPage: React.FC = () => {
         </div>
       </section>
 
-      {/* FIGARATI PIZZA COLLABORATION SECTION */}
+      {/* FIGURATI PIZZA COLLABORATION SECTION */}
       <section className="bg-white text-[#1a1919] border-b-2 border-[#1a1919] relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
           {/* Left — Text */}
@@ -226,7 +226,7 @@ const FoodMenuPage: React.FC = () => {
         </div>
       )}
 
-      {/* FIGARATI PIZZA MENU GRID */}
+      {/* FIGURATI PIZZA MENU GRID */}
       <section className="bg-white text-[#1a1919] py-24 px-6 border-b-2 border-[#1a1919]">
         <div className="max-w-7xl mx-auto">
           {/* Header */}

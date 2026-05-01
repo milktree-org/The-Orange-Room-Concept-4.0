@@ -6,6 +6,23 @@ Each session entry documents: goal, changes made, verification evidence, outstan
 
 ---
 
+## 2026-04-30 — Spelling sweep: Figarati → Figurati
+
+**Goal:** Client (re-)flagged that "Figarati" appears on the site instead of the correct partner name "Figurati". A previous pass on 2026-02-25 fixed it across most surfaces, but three stragglers had crept back / been missed.
+
+### Fixed
+- `page-components/BrunchesPage.tsx:108` — user-visible copy: "pizza from our **Figurati** kitchen" (was Figarati).
+- `page-components/FoodMenuPage.tsx:67` — JSX comment header `{/* FIGURATI PIZZA COLLABORATION SECTION */}`.
+- `page-components/FoodMenuPage.tsx:229` — JSX comment header `{/* FIGURATI PIZZA MENU GRID */}`.
+
+### Verification
+- ✅ Repo-wide `grep -i figarati` returns zero matches across `.tsx/.ts/.md/.html/.json/.css` (excluding `node_modules`/`.next`).
+- ✅ No asset filenames contain `figarati`.
+- ✅ `npm run build` clean, all 23 routes prerender.
+- ✅ Production deploy via `vercel deploy --prod`.
+
+---
+
 ## 2026-04-30 — Footer spinner: permanent fix for "SOUTHAMPTON → SOUT" truncation
 
 **Goal:** Client (Unnati) flagged a spelling issue in the footer brand badge: text reads `SOUT` instead of `SOUTHAMPTON`. User noted this had been "fixed before" — confirmed in the 2026-03-19 entry ("Fix footer spinner: remove duplicate text, add Southampton"). Time to make it not regress again.
