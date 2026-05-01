@@ -6,6 +6,32 @@ Each session entry documents: goal, changes made, verification evidence, outstan
 
 ---
 
+## 2026-04-30 — Footer spinner: permanent fix for "SOUTHAMPTON → SOUT" truncation
+
+**Goal:** Client (Unnati) flagged a spelling issue in the footer brand badge: text reads `SOUT` instead of `SOUTHAMPTON`. User noted this had been "fixed before" — confirmed in the 2026-03-19 entry ("Fix footer spinner: remove duplicate text, add Southampton"). Time to make it not regress again.
+
+### Root cause
+`components/Footer.tsx` renders the rotating brand badge using SVG `<text>` + `<textPath>` wrapped around a circle of radius 37. The path's circumference is `2π × 37 ≈ 232.48` units. The string `• HIGH ON LIFE • EST. 2001 • ORANGE ROOMS • SOUTHAMPTON •` at `text-[7.5px]` with `tracking-[0.1em]` was rendering at right around 235–240 units depending on font weight and letter-spacing — over the path length, so SVG silently truncated the overflow. "SOUTHAMPTON" lost its trailing `-HAMPTON`.
+
+This is fragile: any tweak to font weight, tracking, font loading, or even browser-specific font metrics can push it over the line. That's why it kept regressing.
+
+### Fix
+Added `textLength="230"` and `lengthAdjust="spacingAndGlyphs"` to the `<textPath>` element. SVG now scales the text to fit exactly into 230 units regardless of glyph metrics — the truncation can no longer happen.
+
+Also dropped the leading whitespace inside the textPath (was three spaces `   • HIGH ON LIFE…`) which was eating path space without contributing visible content. Trailing `•` removed since it had been there only as visual padding to push the truncation past `SOUTHAMPTON`.
+
+Inline comment added in the source warning future devs not to remove the `textLength` attributes, citing this regression history.
+
+### Verification
+- ✅ `npm run build` clean, 23 routes prerender
+- ✅ Production deploy via `vercel deploy --prod`
+- Visual confirmation needed on https://orangerooms.co.uk after deploy lands — should show full `• HIGH ON LIFE • EST. 2001 • ORANGE ROOMS • SOUTHAMPTON` with even spacing around the circle.
+
+### Outstanding
+- Ongoing: Vercel Git auto-deploy still broken — commits go to GitHub but don't trigger Vercel builds; needs disconnect+reconnect in project settings → Git.
+
+---
+
 ## 2026-04-29 — Meta Pixel install for ad tracking
 
 **Goal:** Install Meta Pixel `332478784478463` so the client can run Facebook/Instagram ad campaigns. Client (Peter Toland) flagged this as a blocker — campaigns can't launch without the pixel firing.

@@ -84,9 +84,19 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="relative w-52 h-52 md:w-56 md:h-56 lg:w-60 lg:h-60">
             <svg className="absolute inset-0 w-full h-full animate-[spin_15s_linear_infinite]" viewBox="0 0 100 100">
               <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
+              {/*
+                textLength + lengthAdjust force-fits the string into the circle's
+                circumference (2π × 37 ≈ 232 units). Without this, "SOUTHAMPTON"
+                gets silently truncated to "SOUT" whenever fonts or letter-spacing
+                shift even slightly. Don't remove — this has regressed multiple times.
+              */}
               <text className="text-[7.5px] uppercase font-black fill-white/40 tracking-[0.1em]">
-                <textPath xlinkHref="#circlePath">
-                   • HIGH ON LIFE • EST. 2001 • ORANGE ROOMS • SOUTHAMPTON •
+                <textPath
+                  xlinkHref="#circlePath"
+                  textLength="230"
+                  lengthAdjust="spacingAndGlyphs"
+                >
+                  • HIGH ON LIFE • EST. 2001 • ORANGE ROOMS • SOUTHAMPTON
                 </textPath>
               </text>
             </svg>
