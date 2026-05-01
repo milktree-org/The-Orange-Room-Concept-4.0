@@ -6,26 +6,22 @@ Each session entry documents: goal, changes made, verification evidence, outstan
 
 ---
 
-## 2026-04-30 — Footer credit: Milktree Agency → Rifly.ai with GA tracking
+## 2026-04-30 — Footer credit: Milktree Agency → Rifly.ai with UTM tracking
 
-**Goal:** Swap the "Website by Milktree Agency" credit in the footer to point to Rifly.ai, keep the new-tab behavior, and instrument the click so it can be tracked in Google Analytics.
+**Goal:** Swap the "Website by Milktree Agency" credit in the footer to Rifly.ai, keep new-tab behavior, and tag the link so click traffic shows up cleanly in analytics.
 
 ### Changes (`components/Footer.tsx`)
-- Updated the bottom credit link from `MILKTREE AGENCY` → `RIFLY.AI`.
-- Changed `href` from `https://milktreeagency.com/` → `https://rifly.ai`.
-- Kept `target="_blank"` + `rel="noopener noreferrer"` so the link opens in a new tab safely.
-- Added an `onClick` handler that fires a GA4 custom event:
-  - Event name: `rifly_footer_click`
-  - Parameters: `outbound_url`, `link_text`, `source: 'footer'`
-- Inline comment explains where to find the events in GA4 (Reports → Engagement → Events).
+- Link text `MILKTREE AGENCY` → `RIFLY.AI`.
+- `href`: `https://milktreeagency.com/` → `https://rifly.ai/?utm_source=orangerooms.co.uk&utm_medium=referral&utm_campaign=website_credit`.
+- `target="_blank"` + `rel="noopener noreferrer"` retained.
 
-### How to find the clicks in GA4
-1. GA4 → Reports → Engagement → Events
-2. Look for event name `rifly_footer_click`
-3. Click into it to see the parameters per event (outbound_url, link_text, source)
-4. To create a custom report or audience, mark the event as a Conversion in Admin → Events.
+UTM strategy (lighter than firing a custom GA event):
+- `utm_source=orangerooms.co.uk` — identifies which site the click came from
+- `utm_medium=referral` — standard medium for cross-site links
+- `utm_campaign=website_credit` — groups credit-link clicks if more are added later
+- These show up in Rifly.ai's GA Acquisition reports automatically.
 
-(Note: respects existing Consent Mode — no event fires if user rejected analytics on the cookie banner, since `gtag` is gated by Consent Mode v2 defaults.)
+(Earlier iteration of this entry had a `gtag('event', 'rifly_footer_click', …)` onClick handler — replaced with UTM-only on user feedback. UTMs cover the tracking need without adding source-side event noise.)
 
 ### Verification
 - ✅ `npm run build` clean, all 23 routes prerender static.
